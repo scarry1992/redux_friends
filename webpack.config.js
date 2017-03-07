@@ -21,7 +21,7 @@ module.exports = {
             {
                 test: /\.(js|jsx)$/,
                 exclude: 'node_modules',
-                loaders: ['react-hot','babel']
+                loaders: ['babel']
             }
         ],
         //noParse: /\/node_modules\/(lodash)/

@@ -50,27 +50,29 @@ export class AddFriendInput extends Component {
         return (
             <input
                 type="text"
-                value={this.state.name}
+                //value={this.state.name}
                 onChange={this.changeHandler.bind(this)}
                 onKeyDown={this.submitHandler.bind(this)}/>
         );
     }
-    constructor(props, context) {
-        super(props, context);
-        this.state = {
-            name: ''
-        }
-    }
+    // constructor(props, context) {
+    //     super(props, context);
+    //     this.state = {
+    //         name: ''
+    //     }
+    // }
 
     changeHandler(e) {
-        this.setState({name: e.target.value});
+        //this.setState({name: e.target.value});
+        this.props.onChange(e.target.value);
     }
 
     submitHandler(e) {
         const name = e.target.value.trim();
         if (e.which === 13) {
             this.props.addFriend(name);
-            this.setState({name: ''});
+            this.props.onChange('');
+            e.target.value = '';
         }
     }
 }

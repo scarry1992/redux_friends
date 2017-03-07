@@ -7,7 +7,7 @@ import * as reducers from '../reducers'
 import { addFriend, deleteFriend, starFriend } from '../actions'
 
 const reducer = combineReducers(reducers);
-const store = createStore(reducer);
+const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 export default class App extends Component {
     render() {
