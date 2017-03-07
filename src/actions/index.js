@@ -1,9 +1,9 @@
 import * as types from '../constants/ActionTypes'
 
-export function addFriend(name) {
+export function addFriend(name) { //что придет
     return {
-        type: types.ADD_FRIEND,
-        name
+        type: types.ADD_FRIEND,//тип из констант
+        name//данные. есть негласное правило изпользовать payload: name
     }
 }
 
