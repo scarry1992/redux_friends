@@ -6,14 +6,16 @@ import * as FriendActions from '../actions'
 import pickBy from 'lodash/pickBy'
 
 class FriendListApp extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {find: ''};
-    }
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {find: ''};
+    // }
 
-    onChangeHanler(value) {
+    state = {find: ''};//лучше объявлять так
+
+    onChangeHanler = (value) => {//не надо тогда биндить
         this.setState({find: value});
-    }
+    };
 
     render() {
         let { friendlist: { friendsById }, dispatch } = this.props,
@@ -24,7 +26,7 @@ class FriendListApp extends Component {
 
         return (
             <div>
-                <AddFriendInput addFriend={actions.addFriend} onChange={this.onChangeHanler.bind(this)}/>
+                <AddFriendInput addFriend={actions.addFriend} onChange={this.onChangeHanler}/>
                 <FriendList friends={friendsById} actions={actions}/>
             </div>
         );
