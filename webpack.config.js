@@ -11,7 +11,7 @@ module.exports = {
         publicPath: '/'
     },
     resolve: {
-        extensions: ["*", ".js", ".jsx"]
+        extensions: ["*", ".js", ".jsx", ".json"]
     },
     resolveLoader: {
         moduleExtensions: ['*', '-loader']
@@ -22,6 +22,11 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 exclude: 'node_modules',
                 loaders: ['babel']
+            },
+            {
+                test: /\.json$/,
+                include: /src\/data/,
+                loader: 'file?name=assets/[name].[ext]'
             }
         ],
         //noParse: /\/node_modules\/(lodash)/

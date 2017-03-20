@@ -4,6 +4,7 @@ import assign from 'lodash/assign'
 import mapValues from 'lodash/mapValues'
 
 const initialState = {
+    isFetching: false,
     friends: [1,2,3],
     friendsById: {
         1: {
@@ -51,6 +52,23 @@ export default function friends(state = initialState, action) {
                     return friend.id === action.id?
                         assign({}, friend, {starred: !friend.starred}): friend
                 })
+            }
+        }
+        case types.FETCH_REQUEST: {
+            return {
+                ...state,
+                isFetching: action.isFetching
+            }
+        }
+        case types.FETCH_SUCCESS: {
+            return {
+                ...state,
+                friends: [...state.friends, ...Object.keys(action.data).map(item => +item)],
+                friendsById: {
+                    ...state.friendsById,
+                    ...action.data
+                },
+                isFetching: action.isFetching
             }
         }
         default: {

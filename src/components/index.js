@@ -24,23 +24,25 @@ export class FriendList extends Component {
     };
 
     render() {
-        let friends = Object.values(this.props.friends);
+        let friends = Object.values(this.props.friends),
+            style = this.props.isFetching? {opacity:0.3}: {};
 
         return (
-            <ul>
-                {
-                    friends.map((friend) => {
-                        return (<FriendItem
-                            key={friend.id}
-                            id={friend.id}
-                            name={friend.name}
-                            starred={friend.starred}
-                            {...this.props.actions} />);
-                    })
-
-
-                }
-            </ul>
+            <div style={style}>
+                <ul>
+                    {
+                        friends.map((friend) => {
+                            return (<FriendItem
+                                key={friend.id}
+                                id={friend.id}
+                                name={friend.name}
+                                starred={friend.starred}
+                                {...this.props.actions} />);
+                        })
+                    }
+                </ul>
+                <GetFriends getFriends={this.props.actions.fetchFriends}/>
+            </div>
         );
     }
 }
@@ -74,5 +76,15 @@ export class AddFriendInput extends Component {
             this.props.onChange('');
             e.target.value = '';
         }
+    }
+}
+
+class GetFriends extends Component {
+    render() {
+        return (
+            <div>
+                <button onClick={this.props.getFriends.bind(this)}>get</button>
+            </div>
+        );
     }
 }

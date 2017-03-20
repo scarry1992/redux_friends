@@ -20,3 +20,35 @@ export function starFriend(id) {
         id
     }
 }
+
+export function fetchRequest(isFetching) {
+    return {
+        type: types.FETCH_REQUEST,
+        isFetching
+    }
+}
+
+// export function fetchError(error) {
+//     return {
+//         type: types.FETCH_ERROR,
+//         isFetching
+//     }
+// }
+
+export function fetchSuccess(isFetching, data) {
+    return {
+        type: types.FETCH_SUCCESS,
+        data,
+        isFetching
+    }
+}
+
+export function fetchFriends() {
+    return function (dispatch, getState) {
+        dispatch(fetchRequest(true));
+
+        return fetch('/assets/friends.json').
+            then(responce=>responce.json()).
+            then(json => dispatch(fetchSuccess(false, json)));
+    }
+}

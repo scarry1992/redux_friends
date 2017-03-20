@@ -18,7 +18,7 @@ class FriendListApp extends Component {
     };
 
     render() {
-        let { friendlist: { friendsById }, dispatch } = this.props,
+        let { friendlist: { isFetching, friendsById }, dispatch } = this.props,
             actions = bindActionCreators(FriendActions, dispatch);
 
         friendsById = pickBy(friendsById, friend => friend.name.indexOf(this.state.find) !== -1);
@@ -27,7 +27,7 @@ class FriendListApp extends Component {
         return (
             <div>
                 <AddFriendInput addFriend={actions.addFriend} onChange={this.onChangeHanler}/>
-                <FriendList friends={friendsById} actions={actions}/>
+                <FriendList friends={friendsById} actions={actions} isFetching={isFetching}/>
             </div>
         );
     }
